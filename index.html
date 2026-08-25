@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Samara e o Castelo dos Gaps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#120f16" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <canvas id="game-canvas"></canvas>
+
+    <!-- touch input zones (explore mode only) -->
+    <div id="joystick-zone" class="input-zone">
+      <div id="joystick-base" class="joystick-base"></div>
+      <div id="joystick-knob" class="joystick-knob"></div>
+    </div>
+    <div id="camera-zone" class="input-zone"></div>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div id="hud-left">
+        <div id="gap-counter">Gaps vencidos: 0/6</div>
+        <div id="player-hud-hp">
+          <span class="hp-icon">❤</span>
+          <div class="hp-bar-outer small"><div class="hp-bar-inner player" id="player-hud-hp-fill"></div></div>
+          <span id="player-hud-hp-label">100/100</span>
+        </div>
+      </div>
+      <button id="minimap-toggle" aria-label="Abrir mapa">🗺️</button>
+    </div>
+
+    <div id="minimap-panel" class="hidden">
+      <canvas id="minimap-canvas"></canvas>
+    </div>
+
+    <div id="toast" class="hidden"></div>
+
+    <!-- battle UI -->
+    <div id="battle-ui" class="hidden">
+      <div id="battle-top">
+        <div class="combatant-panel">
+          <div class="name" id="monster-name">???</div>
+          <div class="hp-bar-outer"><div class="hp-bar-inner monster" id="monster-hp-fill"></div></div>
+        </div>
+      </div>
+
+      <div id="battle-log"></div>
+
+      <div id="battle-bottom">
+        <div class="combatant-panel">
+          <div class="name">Samara</div>
+          <div class="hp-bar-outer"><div class="hp-bar-inner player" id="player-hp-fill"></div></div>
+        </div>
+        <div id="battle-actions">
+          <button class="battle-btn" id="btn-attack">⚔️ Atacar</button>
+          <button class="battle-btn" id="btn-defend">🛡️ Defender</button>
+          <button class="battle-btn special" id="btn-special">✨ Gap Reverso</button>
+          <button class="battle-btn disabled" id="btn-flee" disabled>🏃 Fugir</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- item pickup prompt -->
+    <div id="item-prompt" class="hidden">
+      <div id="item-prompt-box">
+        <div id="item-prompt-icon">🥤</div>
+        <div id="item-prompt-title">Energético Baly Nuclear</div>
+        <div id="item-prompt-desc">Uma lata gelada de Baly Nuclear. Bebe agora e recupera todo o seu HP.</div>
+        <div id="item-prompt-actions">
+          <button class="battle-btn" id="item-prompt-skip">Deixar aqui</button>
+          <button class="battle-btn special" id="item-prompt-use">✨ Usar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- final story -->
+    <div id="story-box" class="hidden">
+      <div id="story-text"></div>
+      <div id="story-hint" class="hidden">Toque para continuar</div>
+    </div>
+
+    <!-- overlays -->
+    <div id="start-screen">
+      <h1>Samara e o<br />Castelo dos Gaps</h1>
+      <p class="subtitle">Um presente de aniversário</p>
+      <p class="tap-hint">Toque para começar</p>
+    </div>
+
+    <div id="orientation-warning" class="hidden">
+      <div class="rotate-icon">📱</div>
+      <p>Gire seu celular para o modo paisagem para jogar</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
